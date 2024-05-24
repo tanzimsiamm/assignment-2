@@ -17,8 +17,16 @@ const getProductById = async(productId: string) =>{
     return result;
 };
 
-const getUpdateById = async (productId: string, payload: Partial<TProduct>) => {
-    const result = await Product.findByIdAndUpdate(productId, payload, { new: true });
+const getUpdateById = async (id: string, getUpdateById: TProduct) => {
+    const result = await Product.findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          ...getUpdateById,
+        },
+      },
+      { new: true }
+    );
     return result;
   };
 
