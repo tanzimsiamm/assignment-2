@@ -1,22 +1,14 @@
-import express, { Request, Response } from "express";
-import { Product } from "./product.model";
+import express from "express";
+import { productControllers } from "./porduct.controller";
 
 
 const router = express.Router();
 
-router.post("/", async (req: Request, res: Response) => {
-  try {
-    const result = await Product.create(req.body)
-    res.json({
-      success: true,
-      message: "Product created successfully !",
-      data: result,
-    });
-  } catch (err) {
-    console.log(err)
-  }
-
-});
-
+router.post("/", productControllers.createProduct);
+router.get("/", productControllers.getAllProducts);
+router.get("/:productId", productControllers.getProductById)
+router.put("/:productId", productControllers.getProductById)
+router.delete("/:productId", productControllers.deleteProductById)
+router.get("/", productControllers.searchByProduct)
 
 export const productRoutes = router;
