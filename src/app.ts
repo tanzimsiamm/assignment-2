@@ -1,19 +1,17 @@
-import express, { Application, Request, Response } from 'express'
+import express from 'express';
 import cors from 'cors'
+import { orderRoutes } from './app/module/orders/order.route';
 import { productRoutes } from './app/module/porducts/product.route';
-import {orderRoutes } from './app/module/orders/order.route';
 
-const app: Application = express()
+const app = express();
 
-// parser
 app.use(express.json());
-
-app.use("/api/products", productRoutes)
-app.use("/api/orders", orderRoutes)
 app.use(cors())
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello man!')
-})
+app.use('/api/orders', orderRoutes);
+app.use('/api/products', productRoutes);
 
-export default app
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

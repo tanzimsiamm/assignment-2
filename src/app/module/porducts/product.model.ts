@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose'
 import { TInventory, TProduct, TVariant } from './product.interface'
 
+//varient schema
 const variantSchema = new Schema<TVariant>({
     type: {
         type: String,
@@ -12,6 +13,7 @@ const variantSchema = new Schema<TVariant>({
     },
 })
 
+// inventory shema
 const inventorySchema = new Schema<TInventory>({
     quantity: {
         type: Number,
@@ -23,6 +25,7 @@ const inventorySchema = new Schema<TInventory>({
     },
 })
 
+//product shema
 const productSchema = new Schema<TProduct>({
     name: {
         type: String,
@@ -54,4 +57,5 @@ const productSchema = new Schema<TProduct>({
     },
 })
 
+// export product as model
 export const Product = model<TProduct>('Product', productSchema);

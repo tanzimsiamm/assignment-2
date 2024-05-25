@@ -1,7 +1,9 @@
-import { Schema, model } from "mongoose";
-import { IOrder } from "./order.interface";
-import { Product } from "../porducts/product.model";
+import { Schema, model, Document } from 'mongoose';
+import { IOrder } from './order.interface';
+import { Product } from '../porducts/product.model';
 
+
+//
 const orderSchema = new Schema<IOrder>({
   email: {
     type: String,
@@ -21,6 +23,7 @@ const orderSchema = new Schema<IOrder>({
   },
 });
 
+//
 orderSchema.pre("save", async function (next) {
   const result = await Product.findById(this.productId);
   if (!result) {
@@ -56,4 +59,5 @@ orderSchema.pre("save", async function (next) {
   next();
 });
 
-export const OrderModel = model<IOrder>("Order", orderSchema);
+// export orderModel as a model 
+export const OrderModel = model<IOrder>('Order', orderSchema);
