@@ -22,3 +22,5 @@ This is a Node.js application for managing products and orders with MongoDB as t
     DB_URL=mongodb+srv://productUser
 
     
+**Run the Application**
+npm run start:dev
